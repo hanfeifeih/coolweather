@@ -92,27 +92,28 @@ public class CoolWeatherDB {
 	/**
 	 * 从数据库读取某省下所有的城市信息
 	 */
-	public List<City> loadCities(int provinceId){
+	public List<City> loadCities(int provinceId) {
 		List<City> list = new ArrayList<City>();
-		
-		Cursor cursor = db.query("City", null, "province_id = ?", new String[]{String.valueOf(provinceId)}, null, null, null);
+
+		Cursor cursor = db.query("City", null, "province_id = ?", new String[] { String.valueOf(provinceId) }, null,
+				null, null);
 		if (cursor.moveToFirst()) {
 			do {
 				City city = new City();
 				city.setId(cursor.getInt(cursor.getColumnIndex("id")));
 				city.setCityName(cursor.getString(cursor.getColumnIndex("city_name")));
-				city.setCityCode(cursor.getColumnIndex(cursor.getString("city_code")));
+				city.setCityCode(cursor.getString(cursor.getColumnIndex("city_code")));
 				list.add(city);
 			} while (cursor.moveToNext());
 		}
 		return list;
-		}
-	
+	}
+
 	/**
 	 * 将County实例存储到数据库
 	 */
-	public void saveCounty(County county){
-		if (county !=null) {
+	public void saveCounty(County county) {
+		if (county != null) {
 			ContentValues values = new ContentValues();
 			values.put("county_name", county.getCountyName());
 			values.put("county_code", county.getCountyCode());
@@ -120,13 +121,14 @@ public class CoolWeatherDB {
 			db.insert("County", null, values);
 		}
 	}
-	
+
 	/**
 	 * 从数据库读取某城市下所有的县信息
 	 */
-	public List<County> loadCounties(int cityId){
+	public List<County> loadCounties(int cityId) {
 		List<County> list = new ArrayList<County>();
-		Cursor cursor = db.query("County", null, "city_id = ?", new String[]{String.valueOf(cityId)}, null, null, null);
+		Cursor cursor = db.query("County", null, "city_id = ?", new String[] { String.valueOf(cityId) }, null, null,
+				null);
 		if (cursor.moveToFirst()) {
 			do {
 				County county = new County();
@@ -137,7 +139,7 @@ public class CoolWeatherDB {
 				list.add(county);
 			} while (cursor.moveToNext());
 		}
-		
+
 		return list;
 	}
 }
