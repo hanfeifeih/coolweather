@@ -9,28 +9,29 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class CoolWeatherOpenHelper extends SQLiteOpenHelper {
 
 	/**
-	 * province ½¨±íÓï¾ä
+	 * province ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public static final String CREATE_PROVINCE = "create table Province(" + "id integer primary key autoincrement,"
-			+ "province_name text," + "province_code text)";
+			+ "province_name text," 
+			+ "province_code text)";
 	
 	/**
-	 * city ±í½¨Á¢Óï¾ä
+	 * city ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public static final String CREATE_CITY = "create table City("
 			+"id integer primary key autoincrement,"
 			+"city_name text,"
 			+"city_code text,"
-			+"province_id integer";
+			+"province_id integer)";
 	
 	/*
-	 * County ±í½¨Á¢Óï¾ä
+	 * County ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
-	public static final String CREATE_COUNTY = "crate table County("
-			+"id integer primary key autoincrement"
+	public static final String CREATE_COUNTY = "create table County("
+			+"id integer primary key autoincrement,"
 			+"county_name text,"
 			+"county_code text,"
-			+"city_id integer";
+			+"city_id integer)";
 
 	public CoolWeatherOpenHelper(Context context, String name, CursorFactory factory, int version) {
 		super(context, name, factory, version);
